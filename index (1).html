@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Creatures - JS Data Attributes Example</title>
+
+        <style>
+            
+            div.creature{
+                padding:5px;
+                border:2px solid black;
+                border-radius:10px;
+                max-width:400px;
+                min-height:100px;
+                margin-bottom:5px;
+            } 
+            
+            div.creature img{
+                max-width:200px;
+                float:right;
+    
+            }
+
+        </style>
+    </head>   
+    <body>
+    <h1>Creatures</h1>
+    <h3>A JavaScript data attributes example by Tamim Totakhail</h3>
+    <p>This page demonstrates how to use JavaScript data attributes to differentiate data.</p>
+    <p>When you click <b>Show Creature Home</b>, the background color will change color based on their natural environment:
+    </p> 
+    <div>
+        <ul>
+            <li>land: green</li>
+            <li>water: blue</li>
+            <li>air: yellow</li>
+        </ul>
+    </div>
+
+    <p>When you click <b>Show Creature Type</b>, the border color and style will changed based on the type of creature:</p>
+    <div> 
+        <ul>
+            <li>animal: soli red</li>
+            <li>insect: dashed orange</li>
+        </ul>
+    </div>
+    <div class="creature" data-home="land" data-type="animal">    
+        <img src="images/monkey.png" alt="monkey">
+        <h3>Monkey</h3>
+        <p>Monkeys are cute, but don't try to cuddle them.</p>
+    </div>
+        
+   <div class="creature" data-home="air" data-type="animal">    
+        <img src="images/hummingbird.png" alt="hummingbird">
+        <h3>Hummingbird</h3>
+        <p>Hummingbirds are cute, but don't get in the way of their food.</p>
+    </div>
+        
+    <div class="creature" data-home="land" data-type="insect">    
+        <img src="images/spider.png" alt="spider">
+        <h3>Spiders</h3>
+    <p>Spiders are not cute, in fact they creep me out.</p>
+    </div>
+        
+   <div class="creature" data-home="air" data-type="animal">    
+        <img src="images/crow.png" alt="crow">
+        <h3>Crow</h3>
+        <p>Crows are not cute, and don't feed them your french fries.</p>
+    </div> 
+        
+        
+    <div class="creature" data-home="water" data-type="animal">    
+        <img src="images/fish.png" alt="fish">
+        <h3>Fish</h3>
+        <p>Fish are not cute, but they taste good!</p>
+    </div>
+        
+    <div class="creature" data-home="land" data-type="insect">    
+        <img src="images/stinkbug.png" alt="stinkbug">
+        <h3>Stink Bug</h3>
+        <p>Stinkbugs are not cool!  Don't touch them!</p>
+    </div>    
+        
+    <p>
+        <button onclick="showHome()">Show Creature Home</button> 
+        <button onclick="showType()">Show Creature Type</button> 
+        <button onclick="clearAll()">Clear All</button>
+    </p>
+     
+    <script>
+
+        
+        function showHome()
+        {
+            /*
+                loop through all creatures
+                
+                if creature lives on land, background color green
+                if creature lives in water, blue
+                if creature lives in air, yellow
+                
+                */
+
+                let myHome = "";
+  
+            const myNodelist = document.querySelectorAll("div.creature");
+            for (let i = 0; i < myNodelist.length; i++) {
+                myHome = myNodelist[i].dataset.home;
+
+                switch(myHome){
+                    case "land":
+                        myNodelist[i].style.backgroundColor = "green";
+                    break;
+
+                    case "water":
+                        myNodelist[i].style.backgroundColor = "blue";
+                    break;
+
+                    case "air":
+                        myNodelist[i].style.backgroundColor = "yellow";
+                    break;
+                }
+            }
+        }//end showHome()
+        
+        function showType()
+        {
+            /*
+                loop through all creatures
+                
+                if creature is an animal, border color solid red
+                if creature is an insect, border color is dashed orange
+            */
+                    let myType = "";
+  
+                    const myNodelist = document.querySelectorAll("div.creature");
+                    for (let i = 0; i < myNodelist.length; i++) {
+                        myType = myNodelist[i].dataset.type;
+
+                        switch(myType){
+                            case "animal":
+                                myNodelist[i].style.border = "4px solid red";
+                            break;
+
+                            case "insect":
+                                myNodelist[i].style.border = "4px dashed orange";
+                            break;
+
+                        }
+                    }
+        }//end showType()
+
+        function clearAll()
+        {
+            /*
+                loop through all creatures
+                
+                clear border back to 1px solid black
+                clear background color to white
+                
+            */
+           const myNodelist = document.querySelectorAll("div.creature");
+
+           console.log(myNodelist);
+
+           myNodelist.forEach(function(el){
+                el.style.backgroundColor = "#fff";
+                el.style.border = "1px solid #000";
+
+           });
+        }//end clearAll()
+
+    </script>    
+    </body>
+</html>
